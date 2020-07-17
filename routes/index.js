@@ -8,8 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/busstops', (req, res) => {
-    let url = 'http://datamall2.mytransport.sg/ltaodataservice/BusStops?AccountKey=lmFKyEjFRxuha99/VP6V7g==';
-    request.get(url, (error, response, body) => {
+    let options = { 
+        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops',
+        headers: {
+            AccountKey: 'lmFKyEjFRxuha99/VP6V7g=='
+        }
+    };
+    request.get(options, (error, response, body) => {
         let json = JSON.parse(body);
         res.status(200).send(JSON.stringify(json.value)).end();
     })
