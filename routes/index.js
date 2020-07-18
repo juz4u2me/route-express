@@ -7,9 +7,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/busstops', (req, res) => {
+router.get('/busstops/:skip', (req, res) => {
+    let skip = req.params.skip;
     let options = { 
-        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops',
+        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip='+skip,
         headers: {
             AccountKey: 'lmFKyEjFRxuha99/VP6V7g=='
         }
